@@ -1,0 +1,248 @@
+{
+    "name": "rpgle-code-coverage",
+    "displayName": "RPGLE Code Coverage",
+    "description": "Professional code coverage analysis for RPGLE with seamless IBM i integration. Generate PDF reports, visualize covered/uncovered lines, and process existing .cczip files.",
+    "version": "1.4.0",
+    "publisher": "balrocj",
+    "icon": "media/icon-256.png",
+    "license": "MIT",
+    "engines": {
+        "vscode": "^1.105.1"
+    },
+    "extensionDependencies": [
+        "halcyontechltd.code-for-ibmi"
+    ],
+    "categories": [
+        "Testing",
+        "Other"
+    ],
+    "keywords": [
+        "rpgle",
+        "coverage",
+        "testing",
+        "ibm",
+        "ibmi",
+        "codecov",
+        "as400",
+        "iseries",
+        "pdf-reports",
+        "code-analysis"
+    ],
+    "activationEvents": [
+        "onStartupFinished",
+        "onLanguage:rpgle",
+        "onLanguage:sqlrpgle",
+        "onFileSystem:member"
+    ],
+    "main": "./dist/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "rpgleCoverage.runCoverage",
+                "title": "Run Code Coverage",
+                "icon": "$(play)"
+            },
+            {
+                "command": "rpgleCoverage.clearCoverage",
+                "title": "Clear Coverage",
+                "icon": "$(clear-all)"
+            },
+            {
+                "command": "rpgleCoverage.generateReport",
+                "title": "Generate Report",
+                "icon": "$(file-pdf)"
+            },
+            {
+                "command": "rpgleCoverage.refreshView",
+                "title": "Refresh View",
+                "icon": "$(refresh)"
+            },
+            {
+                "command": "rpgleCoverage.openFile",
+                "title": "Open File"
+            },
+            {
+                "command": "rpgleCoverage.openConfig",
+                "title": "Configure Coverage",
+                "icon": "$(settings-gear)"
+            },
+            {
+                "command": "rpgleCoverage.openReportsFolder",
+                "title": "Open Reports Folder",
+                "icon": "$(folder)"
+            },
+            {
+                "command": "rpgleCoverage.refreshAvailableFiles",
+                "title": "Refresh Available Files",
+                "icon": "$(refresh)"
+            },
+            {
+                "command": "rpgleCoverage.deleteCoverageFile",
+                "title": "Delete Coverage File",
+                "icon": "$(trash)"
+            },
+            {
+                "command": "rpgleCoverage.selectLocalCoverageFile",
+                "title": "Select Local Coverage File",
+                "icon": "$(folder-opened)"
+            },
+            {
+                "command": "rpgleCoverage.showLastExecutionLog",
+                "title": "View Last Execution Log",
+                "icon": "$(output)"
+            }
+        ],
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "rpgleCoverage",
+                    "title": "RPGLE Code Coverage",
+                    "icon": "$(testing-coverage-icon)",
+                    "when": "code-for-ibmi:connected"
+                }
+            ]
+        },
+        "views": {
+            "rpgleCoverage": [
+                {
+                    "id": "coverageTreeView",
+                    "name": "Coverage Results",
+                    "icon": "$(graph)",
+                    "when": "code-for-ibmi:connected"
+                },
+                {
+                    "id": "availableCoverageFiles",
+                    "name": "Available Coverage CCZIP Files",
+                    "icon": "$(archive)",
+                    "when": "code-for-ibmi:connected"
+                }
+            ]
+        },
+        "viewsWelcome": [
+            {
+                "view": "coverageTreeView",
+                "contents": "No coverage results available.\n[Run Coverage](command:rpgleCoverage.runCoverage)"
+            }
+        ],
+        "menus": {
+            "view/title": [
+                {
+                    "command": "rpgleCoverage.runCoverage",
+                    "when": "view == coverageTreeView",
+                    "group": "navigation"
+                },
+                {
+                    "command": "rpgleCoverage.clearCoverage",
+                    "when": "view == coverageTreeView",
+                    "group": "navigation"
+                },
+                {
+                    "command": "rpgleCoverage.generateReport",
+                    "when": "view == coverageTreeView",
+                    "group": "navigation"
+                },
+                {
+                    "command": "rpgleCoverage.refreshView",
+                    "when": "view == coverageTreeView",
+                    "group": "navigation"
+                },
+                {
+                    "command": "rpgleCoverage.openConfig",
+                    "when": "view == coverageTreeView",
+                    "group": "navigation"
+                },
+                {
+                    "command": "rpgleCoverage.openReportsFolder",
+                    "when": "view == coverageTreeView",
+                    "group": "navigation"
+                },
+                {
+                    "command": "rpgleCoverage.showLastExecutionLog",
+                    "when": "view == coverageTreeView",
+                    "group": "navigation"
+                },
+                {
+                    "command": "rpgleCoverage.refreshAvailableFiles",
+                    "when": "view == availableCoverageFiles",
+                    "group": "navigation"
+                },
+                {
+                    "command": "rpgleCoverage.selectLocalCoverageFile",
+                    "when": "view == availableCoverageFiles",
+                    "group": "navigation"
+                }
+            ],
+            "editor/title": [],
+            "explorer/context": [],
+            "view/item/context": [
+                {
+                    "command": "rpgleCoverage.deleteCoverageFile",
+                    "when": "view == availableCoverageFiles && viewItem == coverageFile",
+                    "group": "inline"
+                }
+            ]
+        },
+        "configuration": {
+            "title": "RPGLE Code Coverage",
+            "properties": {
+                "rpgleCoverage.outputFormat": {
+                    "type": "string",
+                    "enum": [
+                        "PDF",
+                        "HTML"
+                    ],
+                    "default": "PDF",
+                    "description": "Coverage report output format"
+                },
+                "rpgleCoverage.inheritNonExecutableColoring": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Apply intelligent coloring where non-executable lines inherit the coloring for better visual consistency"
+                },
+                "rpgleCoverage.splitMultipleReports": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Generate separate coverage reports when multiple programs/SRVPGM are analyzed in the same run"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run package",
+        "compile": "webpack",
+        "watch": "webpack --watch",
+        "package": "webpack --mode production --devtool hidden-source-map",
+        "compile-debug": "webpack --mode development --devtool source-map",
+        "postinstall": "node scripts/install-chromium.js",
+        "dev-setup": "node scripts/dev-setup.js",
+        "watch-debug": "webpack --mode development --devtool source-map --watch",
+        "compile-tests": "tsc -p . --outDir out",
+        "watch-tests": "tsc -p . -w --outDir out",
+        "pretest": "npm run compile-tests && npm run compile && npm run lint",
+        "test:services": "mocha src/services/tests/**/*.test.js",
+        "lint": "eslint src --ext ts",
+        "test": "node ./out/test/runTest.js"
+    },
+    "devDependencies": {
+        "@types/node": "16.x",
+        "@types/vscode": "^1.90.0",
+        "@typescript-eslint/eslint-plugin": "^5.45.0",
+        "@typescript-eslint/parser": "^5.45.0",
+        "@vscode/test-electron": "^2.2.0",
+        "eslint": "^8.28.0",
+        "glob": "^8.0.3",
+        "mocha": "^10.1.0",
+        "ts-loader": "^9.4.1",
+        "typescript": "^4.9.4",
+        "webpack": "^5.75.0",
+        "webpack-cli": "^5.0.0"
+    },
+    "dependencies": {
+        "html-pdf": "^3.0.1",
+        "mustache": "^4.2.0",
+        "puppeteer": "^24.30.0",
+        "tmp": "^0.2.3",
+        "unzipper": "^0.10.14",
+        "xml2js": "^0.6.2"
+    }
+}

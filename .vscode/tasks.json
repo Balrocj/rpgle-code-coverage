@@ -1,0 +1,45 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Install Dependencies",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"install"
+			],
+			"group": "build",
+			"isBackground": false,
+			"problemMatcher": [],
+			"presentation": {
+				"reveal": "always",
+				"panel": "new"
+			}
+		},
+		{
+			"type": "npm",
+			"script": "compile-debug",
+			"group": "build",
+			"label": "npm: compile-debug",
+			"detail": "webpack --mode development --devtool source-map"
+		},
+		{
+			"type": "npm",
+			"script": "package",
+			"group": "build",
+			"label": "npm: package",
+			"detail": "webpack --mode production --devtool hidden-source-map"
+		},
+		{
+			"type": "npm",
+			"script": "watch-debug",
+			"group": "build",
+			"label": "npm: watch-debug",
+			"detail": "webpack --mode development --devtool source-map --watch",
+			"isBackground": true,
+			"problemMatcher": [
+				"$webpack"
+			]
+		}
+	]
+}

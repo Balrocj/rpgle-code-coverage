@@ -1,0 +1,22 @@
+[
+    {
+        "key": "ctrl+shift+c ctrl+r",
+        "command": "rpgleCoverage.runCoverage",
+        "when": "workbenchState != empty"
+    },
+    {
+        "key": "ctrl+shift+c ctrl+f",
+        "command": "rpgleCoverage.runCoverageOnFile",
+        "when": "editorLangId == rpgle || editorLangId == sqlrpgle"
+    },
+    {
+        "key": "ctrl+shift+c ctrl+x",
+        "command": "rpgleCoverage.clearCoverage",
+        "when": "rpgleCoverage.hasResults"
+    },
+    {
+        "key": "ctrl+shift+c ctrl+p",
+        "command": "rpgleCoverage.generateReport",
+        "when": "rpgleCoverage.hasResults"
+    }
+]
