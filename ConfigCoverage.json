@@ -1,10 +1,9 @@
 {
     "codecov": {
         "modules": [
-            "",
             ""
         ],
-        "programToExecute": "CALL PGM(CBALLEST1/HELLO)  ",
+        "programToExecute": "",
         "ccView": "*SOURCE",
         "ccLevel": "*LINE"
     }
