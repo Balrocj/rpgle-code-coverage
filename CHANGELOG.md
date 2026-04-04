@@ -2,7 +2,7 @@
 
 All notable changes to the "RPGLE Code Coverage" extension will be documented in this file.
 
-## [1.4.0] - 2026-04-03
+## [1.5.0] - 2026-04-03
 
 ### 🔧 Improvements
 
