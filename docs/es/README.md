@@ -20,7 +20,7 @@ RPGLE Code Coverage es la primera extensión de Visual Studio Code diseñada esp
 
 ---
 
-**Versión:** 1.3.0  
+**Versión:** 1.4.0  
 **Licencia:** MIT  
 **Publicador:** Balrocj  
 
