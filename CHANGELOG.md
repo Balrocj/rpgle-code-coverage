@@ -2,6 +2,10 @@
 
 All notable changes to the "RPGLE Code Coverage" extension will be documented in this file.
 
+## [1.7.0] - 2026-04-11
+
+Add gif demo on Readme file and update version to 1.7.0
+
 ## [1.6.0] - 2026-04-11
 
 ### ✨ New Features
