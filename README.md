@@ -4,6 +4,8 @@
 
 Professional code coverage analysis for RPGLE with seamless IBM i integration. Simplify your testing workflow with automated coverage reports and real-time visualization for your RPGLE and SQLRPGLE code.
 
+![RPGLE Code Coverage Demo](https://raw.githubusercontent.com/Balrocj/rpgle-code-coverage/main/media/Demo.gif)
+
 ## ✨ Why Choose RPGLE Code Coverage?
 
 - **🚀 Simple Setup**: Only 2 parameters required - everything else is auto-extracted!
@@ -93,4 +95,4 @@ MIT License
 
 **Made for the IBM i development community**
 
-*Version 1.6.0 - Ready for production use!*
+*Version 1.7.0 - Ready for production use!*

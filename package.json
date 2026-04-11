@@ -2,7 +2,7 @@
     "name": "rpgle-code-coverage",
     "displayName": "RPGLE Code Coverage",
     "description": "Professional code coverage analysis for RPGLE with seamless IBM i integration. Generate PDF reports, visualize covered/uncovered lines, and process existing .cczip files.",
-    "version": "1.6.0",
+    "version": "1.7.0",
     "publisher": "balrocj",
     "icon": "media/icon-256.png",
     "license": "MIT",
