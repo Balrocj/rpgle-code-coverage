@@ -553,7 +553,7 @@ function getConfigurationPanelTemplate() {
                         <!-- Los mdulos se cargarn dinmicamente -->
                     </div>
                     <button type="button" class="btn btn-add" onclick="addModule()">
-                         Add PGM-SRVPGM
+                         Add PGM/SRVPGM
                     </button>
                 </div>
 

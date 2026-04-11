@@ -19,8 +19,20 @@ class CoverageTreeDataProvider {
         return element;
     }
 
+    getCoverageThresholds() {
+        const config = this.vscode.workspace.getConfiguration('rpgleCoverage');
+        const passThreshold = Number(config.get('thresholds.pass'));
+        const warningThreshold = Number(config.get('thresholds.warning'));
+
+        return {
+            passThreshold,
+            warningThreshold
+        };
+    }
+
     getChildren(element) {
         const coverageData = this.getCoverageData();
+        const { passThreshold, warningThreshold } = this.getCoverageThresholds();
 
         if (!element) {
             const items = [];
@@ -46,9 +58,9 @@ class CoverageTreeDataProvider {
                     this.vscode.TreeItemCollapsibleState.None
                 );
 
-                if (coverage.coveragePercentage >= 80) {
+                if (coverage.coveragePercentage >= passThreshold) {
                     item.iconPath = new this.vscode.ThemeIcon('pass', new this.vscode.ThemeColor('testing.iconPassed'));
-                } else if (coverage.coveragePercentage >= 50) {
+                } else if (coverage.coveragePercentage >= warningThreshold) {
                     item.iconPath = new this.vscode.ThemeIcon('warning', new this.vscode.ThemeColor('testing.iconQueued'));
                 } else {
                     item.iconPath = new this.vscode.ThemeIcon('error', new this.vscode.ThemeColor('testing.iconFailed'));

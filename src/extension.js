@@ -112,6 +112,15 @@ function activate(context) {
     context.subscriptions.push(coverageTreeView);
     logger.debug('Coverage tree view created');
 
+    // Refrescar el panel automáticamente cuando cambien los umbrales de cobertura
+    context.subscriptions.push(
+        vscode.workspace.onDidChangeConfiguration(event => {
+            if (event.affectsConfiguration('rpgleCoverage.thresholds')) {
+                treeDataProvider.refresh();
+            }
+        })
+    );
+
     // Proveedor de datos para archivos de cobertura disponibles
     logger.debug('Creating available coverage provider with executor:', !!coverageExecutor);
     availableCoverageProvider = new availableCoverageProviderClass(coverageExecutor);

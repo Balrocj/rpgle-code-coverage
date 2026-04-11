@@ -94,6 +94,22 @@ function createReportCommands(deps) {
         const files = Array.isArray(filesToRender)
             ? filesToRender
             : Array.from(getCoverageData().values());
+        const config = vscode.workspace.getConfiguration('rpgleCoverage');
+        const inheritColoring = config.get('inheritNonExecutableColoring', false);
+        const passThreshold = Number(config.get('thresholds.pass'));
+        const warningThreshold = Number(config.get('thresholds.warning'));
+
+        const getStatusColor = (coveragePercentage) => {
+            if (coveragePercentage >= passThreshold) {
+                return '#4CAF50';
+            }
+
+            if (coveragePercentage >= warningThreshold) {
+                return '#FF9800';
+            }
+
+            return '#F44336';
+        };
 
         const getSectionAnchor = (filePath, index) => {
             const safeFileName = getCleanFileName(filePath)
@@ -108,8 +124,7 @@ function createReportCommands(deps) {
         for (const [index, file] of files.entries()) {
             const fileName = getCleanFileName(file.filePath);
             const sectionAnchor = getSectionAnchor(file.filePath, index);
-            const statusColor = file.coveragePercentage >= 80 ? '#4CAF50' :
-                               file.coveragePercentage >= 50 ? '#FF9800' : '#F44336';
+            const statusColor = getStatusColor(file.coveragePercentage);
 
             let codeLines;
             if (file.sourceCode && Array.isArray(file.sourceCode)) {
@@ -121,8 +136,6 @@ function createReportCommands(deps) {
                 codeLines = content.split('\n');
             }
 
-            const config = vscode.workspace.getConfiguration('rpgleCoverage');
-            const inheritColoring = config.get('inheritNonExecutableColoring', false);
             const coloredLines = calculateColoredLines(codeLines, file, inheritColoring);
 
             let codeHTML = '<pre style="font-family: monospace; font-size: 13px; background: #222; color: #eee; border-radius: 8px; padding: 10px; overflow-x: auto;">';
@@ -217,8 +230,7 @@ function createReportCommands(deps) {
         ${files.map((file, index) => {
             const fileName = getCleanFileName(file.filePath);
             const sectionAnchor = getSectionAnchor(file.filePath, index);
-            const statusColor = file.coveragePercentage >= 80 ? '#4CAF50' :
-                               file.coveragePercentage >= 50 ? '#FF9800' : '#F44336';
+            const statusColor = getStatusColor(file.coveragePercentage);
             const totalFileLines = file.sourceCode ? file.sourceCode.length : file.totalLines + 20;
 
             return `

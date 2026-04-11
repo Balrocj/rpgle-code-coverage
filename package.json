@@ -2,7 +2,7 @@
     "name": "rpgle-code-coverage",
     "displayName": "RPGLE Code Coverage",
     "description": "Professional code coverage analysis for RPGLE with seamless IBM i integration. Generate PDF reports, visualize covered/uncovered lines, and process existing .cczip files.",
-    "version": "1.5.1",
+    "version": "1.6.0",
     "publisher": "balrocj",
     "icon": "media/icon-256.png",
     "license": "MIT",
@@ -207,6 +207,20 @@
                     "type": "boolean",
                     "default": false,
                     "description": "Generate separate coverage reports when multiple programs/SRVPGM are analyzed in the same run"
+                },
+                "rpgleCoverage.thresholds.pass": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "default": 80,
+                    "description": "Coverage percentage threshold for pass status icon"
+                },
+                "rpgleCoverage.thresholds.warning": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "default": 70,
+                    "description": "Coverage percentage threshold for warning status icon"
                 }
             }
         }

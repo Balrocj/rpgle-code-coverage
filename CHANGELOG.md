@@ -2,6 +2,15 @@
 
 All notable changes to the "RPGLE Code Coverage" extension will be documented in this file.
 
+## [1.6.0] - 2026-04-11
+
+### ✨ New Features
+
+- Added configurable coverage threshold settings `rpgleCoverage.thresholds.pass` (default: 80) and `rpgleCoverage.thresholds.warning` (default: 70) to control status icon colors in the coverage panel.
+- The coverage tree view now refreshes automatically when thresholds are changed in Settings, without requiring a manual refresh or re-running the analysis.
+- Threshold colors are now consistent across the tree view panel and generated HTML/PDF reports.
+
+
 ## [1.5.1] - 2026-04-11
 
 ### FIX
