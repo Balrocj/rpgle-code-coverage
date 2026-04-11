@@ -29,7 +29,7 @@ class CoverageTreeDataProvider {
             }
 
             const files = Array.from(coverageData.values());
-            const avgCoverage = Math.round(files.reduce((sum, file) => sum + file.coveragePercentage, 0) / files.length);
+            const avgCoverage = parseFloat((files.reduce((sum, file) => sum + file.coveragePercentage, 0) / files.length).toFixed(2));
             const summaryItem = new this.vscode.TreeItem(
                 `Summary (${files.length} files - ${avgCoverage}% average)`,
                 this.vscode.TreeItemCollapsibleState.Expanded

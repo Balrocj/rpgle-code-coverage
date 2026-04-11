@@ -1005,7 +1005,7 @@ class RealCoverageExecutor {
 
                 const effectiveTotal = validLineKeys.length > 0 ? validLineKeys.length : lineKeys.length;
                 const effectiveCovered = validLineKeys.length > 0 ? validCountRan : countRan;
-                const coveragePercentage = Math.round((effectiveCovered / effectiveTotal) * 100);
+                const coveragePercentage = parseFloat(((effectiveCovered / effectiveTotal) * 100).toFixed(2));
 
                 const finalLineKeys = validLineKeys.length > 0 ? validLineKeys : lineKeys;
 

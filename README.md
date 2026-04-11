@@ -93,4 +93,4 @@ MIT License
 
 **Made for the IBM i development community**
 
-*Version 1.5.0 - Ready for production use!*
+*Version 1.5.1 - Ready for production use!*

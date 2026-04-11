@@ -2,6 +2,14 @@
 
 All notable changes to the "RPGLE Code Coverage" extension will be documented in this file.
 
+## [1.5.1] - 2026-04-11
+
+### FIX
+
+- Coverage percentages now display with two decimal places for greater accuracy (e.g., 99.67% instead of 100%)
+- Fixed overly aggressive rounding that masked low coverage rates (e.g., 300/301 lines now shows 99.67% instead of 100%)
+- Improved precision in coverage calculations for both individual programs and average coverage in the summary panel
+
 ## [1.5.0] - 2026-04-03
 
 ### 🔧 Improvements
