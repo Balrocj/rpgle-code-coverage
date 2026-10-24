@@ -213,6 +213,7 @@ function activate(context) {
         refreshView: stateCommands.refreshView,
         openFile: navigationCommands.openFile,
         openConfig: managementCommands.openConfig,
+        openExtensionSettings: managementCommands.openExtensionSettings,
         openReportsFolder: managementCommands.openReportsFolder,
         refreshAvailableFiles: managementCommands.refreshAvailableFiles,
         processCoverageFile: managementCommands.processCoverageFile,

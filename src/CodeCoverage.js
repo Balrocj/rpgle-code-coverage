@@ -365,6 +365,19 @@ class RealCoverageExecutor {
         return baseDir;
     }
 
+    getAvailableCoverageDirectory() {
+        const configuredDirectory = vscode.workspace
+            .getConfiguration('rpgleCoverage')
+            .get('availableCoverageDirectory', '');
+
+        if (typeof configuredDirectory !== 'string' || !configuredDirectory.trim()) {
+            return this.getHomeDirectory();
+        }
+
+        const directory = configuredDirectory.trim().replace(/\/+$/, '');
+        return directory || '/';
+    }
+
     setupTempStorage(systemName) {
         const timestamp = Date.now();
         
@@ -427,14 +440,14 @@ class RealCoverageExecutor {
         }
 
         try {
-            const homeDir = this.getHomeDirectory();
-            this.log(`Buscando archivos .cczip en: ${homeDir}`);
+            const coverageDirectory = this.getAvailableCoverageDirectory();
+            this.log(`Buscando archivos .cczip en: ${coverageDirectory}`);
             
             const content = this.connection.getContent();
             
             // Obtener lista de archivos en el directorio home
-            const fileList = await content.getFileList(homeDir);
-            this.log(`Archivos encontrados en ${homeDir}: ${fileList.length}`);
+            const fileList = await content.getFileList(coverageDirectory);
+            this.log(`Archivos encontrados en ${coverageDirectory}: ${fileList.length}`);
             
             // Log de todos los archivos encontrados para debug
             fileList.forEach((file, index) => {
@@ -451,7 +464,7 @@ class RealCoverageExecutor {
                 })
                 .map(file => ({
                     name: file.name,
-                    path: `${homeDir}/${file.name}`,
+                    path: `${coverageDirectory === '/' ? '' : coverageDirectory}/${file.name}`,
                     size: file.size || 0,
                     modified: file.modified || new Date().toISOString()
                 }))
@@ -483,8 +496,10 @@ class RealCoverageExecutor {
         }
 
         try {
-            const homeDir = this.getHomeDirectory();
-            const fullZipPath = `${homeDir}/${ccZipFileName}`;
+            const coverageDirectory = this.getAvailableCoverageDirectory();
+            const fullZipPath = ccZipFileName.startsWith('/')
+                ? ccZipFileName
+                : `${coverageDirectory === '/' ? '' : coverageDirectory}/${ccZipFileName}`;
             this.log(`Preparando para procesar archivo: ${fullZipPath}`);  
             
             // El archivo existe porque ya lo listamos, no es necesario verificar nuevamente

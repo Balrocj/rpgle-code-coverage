@@ -30,6 +30,10 @@ function createManagementCommands(deps) {
         }
     }
 
+    async function openExtensionSettings() {
+        await vscode.commands.executeCommand('workbench.action.openSettings', '@ext:balrocj.rpgle-code-coverage');
+    }
+
     async function openReportsFolder() {
         const outputChannel = getOutputChannel();
 
@@ -237,6 +241,7 @@ function createManagementCommands(deps) {
 
     return {
         openConfig,
+        openExtensionSettings,
         openReportsFolder,
         refreshAvailableFiles,
         processCoverageFile,

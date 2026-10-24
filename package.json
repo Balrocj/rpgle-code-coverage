@@ -2,7 +2,7 @@
     "name": "rpgle-code-coverage",
     "displayName": "RPGLE Code Coverage",
     "description": "Professional code coverage analysis for RPGLE with seamless IBM i integration. Generate PDF reports, visualize covered/uncovered lines, and process existing .cczip files.",
-    "version": "1.7.0",
+    "version": "1.8.0",
     "publisher": "balrocj",
     "icon": "media/icon-256.png",
     "license": "MIT",
@@ -91,6 +91,11 @@
                 "icon": "$(folder-opened)"
             },
             {
+                "command": "rpgleCoverage.openExtensionSettings",
+                "title": "Open RPGLE Code Coverage Settings",
+                "icon": "$(gear)"
+            },
+            {
                 "command": "rpgleCoverage.showLastExecutionLog",
                 "title": "View Last Execution Log",
                 "icon": "$(output)"
@@ -174,6 +179,11 @@
                     "command": "rpgleCoverage.selectLocalCoverageFile",
                     "when": "view == availableCoverageFiles",
                     "group": "navigation"
+                },
+                {
+                    "command": "rpgleCoverage.openExtensionSettings",
+                    "when": "view == availableCoverageFiles",
+                    "group": "navigation"
                 }
             ],
             "editor/title": [],
@@ -197,6 +207,12 @@
                     ],
                     "default": "PDF",
                     "description": "Coverage report output format"
+                },
+                "rpgleCoverage.availableCoverageDirectory": {
+                    "type": "string",
+                    "default": "",
+                    "scope": "machine",
+                    "description": "IBM i IFS directory to read available CCZIP files from. Leave empty to use the connected user's home directory."
                 },
                 "rpgleCoverage.inheritNonExecutableColoring": {
                     "type": "boolean",

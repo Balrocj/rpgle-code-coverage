@@ -2,31 +2,30 @@
 
 All notable changes to the "RPGLE Code Coverage" extension will be documented in this file.
 
-## [1.7.0] - 2026-04-11
+## [1.8.0] - 2026-10-24
+### 🔧 Improvements
+- Added the global setting `rpgleCoverage.availableCoverageDirectory` to choose the IBM i IFS directory used by the "Available Coverage CCZIP Files" view.
+- When the setting is empty, the extension continues to list files from the connected user's home directory.
+- The setting affects only browsing and processing existing CCZIP files; coverage execution and its temporary output location remain unchanged.
 
+## [1.7.0] - 2026-04-11
 Add gif demo on Readme file and update version to 1.7.0
 
 ## [1.6.0] - 2026-04-11
-
 ### ✨ New Features
-
 - Added configurable coverage threshold settings `rpgleCoverage.thresholds.pass` (default: 80) and `rpgleCoverage.thresholds.warning` (default: 70) to control status icon colors in the coverage panel.
 - The coverage tree view now refreshes automatically when thresholds are changed in Settings, without requiring a manual refresh or re-running the analysis.
 - Threshold colors are now consistent across the tree view panel and generated HTML/PDF reports.
 
 
 ## [1.5.1] - 2026-04-11
-
 ### FIX
-
 - Coverage percentages now display with two decimal places for greater accuracy (e.g., 99.67% instead of 100%)
 - Fixed overly aggressive rounding that masked low coverage rates (e.g., 300/301 lines now shows 99.67% instead of 100%)
 - Improved precision in coverage calculations for both individual programs and average coverage in the summary panel
 
 ## [1.5.0] - 2026-04-03
-
 ### 🔧 Improvements
-
 - Coverage summary cards in generated reports are now clickable and navigate directly to each program/SRVPGM detail section.
 - Added a "Back to summary" link in each detail section to improve navigation in long reports.
 - Added new global setting `rpgleCoverage.splitMultipleReports` to optionally generate separate reports when multiple programs/SRVPGM are analyzed.
@@ -34,29 +33,21 @@ Add gif demo on Readme file and update version to 1.7.0
 - When separate reports are generated, selecting "Open Reports" now opens all generated report files automatically.
 
 ## [1.3.0] - 2025-11-29
-
 ### 🔧 Improvements
-
 - The extension's performance is improved when it needs to cover more than one object.
 
 ## [1.2.1] - 2025-11-28
-
 ### 🔧 Improvements
-
 - The error encountered when running a program that receives parameters has been resolved.
 
 ## [1.2.0] - 2025-11-23
-
 ### 🔧 Improvements
-
 - Messages in the data entry form have been improved.
 - Error handling has been improved.
 - The functionality to review the log of the last coverage execution is added in order to quickly and easily identify errors in the execution.
 
 ## [1.1.0] - 2025-11-22
-
 ### 🔧 Form improvement
-
 - Improvements to the data entry form to enhance the user experience
 - Clearer labels and instructions for each field
 - Improved layout for better readability
@@ -64,19 +55,15 @@ Add gif demo on Readme file and update version to 1.7.0
 - Tooltips added for additional guidance on parameters
 
 ## [1.0.1] - 2025-11-20
-
 ### 🚨 MAJOR IMPROVEMENT - Bundled Chromium Architecture
-
 - **Zero Aditional Configuration for PDF**: PDF generation now works out-of-the-box on any system
 - **Plug & Play**: Install extension → PDF immediately available
 
 ### ✨ Benefits of Bundled Architecture
-
 - **Corporate-friendly**: Works in restricted environments without external downloads
 - **Consistent experience**: PDF generation available for all users, always
 
 ### 🔧 Additional Improvements
-
 - **Documentation**: Updated README with clearer installation and usage instructions
 - **Reports**: Improved coverage report titles and formatting for better readability
 - **Error Handling**: Better logging and diagnostics throughout the extension
@@ -84,9 +71,7 @@ Add gif demo on Readme file and update version to 1.7.0
 - **Eliminated**: Removed user cache detection logic (no longer needed with bundled architecture)
 
 ## [1.0.0] - 2025-11-17
-
 ### 🎉 Initial Release
-
 - **Simplified Configuration**: Only 2 parameters required (program to execute and modules)
 - **Auto-parameter Extraction**: Automatic extraction of libraries, source files, and IBM i parameters from CODECOV XML results
 - **Real-time Coverage Visualization**: Covered (green) and uncovered (red) lines directly in the editor
@@ -99,14 +84,12 @@ Add gif demo on Readme file and update version to 1.7.0
 - **Modern Web UI**: Responsive configuration panel
 
 ### Features
-
 - Support for RPGLE and SQLRPGLE files
 - Automatic temporary file cleanup
 - Coverage statistics and percentages
 - Professional reporting suitable for compliance
 
 ### Requirements
-
 - Code for IBM i extension
 - IBM i system with CODECOV command available
 - Programs compiled with *SOURCE/*ALL debug views
